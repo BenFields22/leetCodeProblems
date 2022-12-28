@@ -1,0 +1,21 @@
+{
+  "configurations": {
+    "launch": {
+      "adapter": "CodeLLDB",
+      "breakpoints": {
+        "exception": {
+          "all": "N",
+          "uncaught": "N"
+        }
+      },
+      "filetypes": [ "rust","cpp" ,"c"],
+      "configuration": {
+        "request": "launch",
+        "program": "run",
+        "cwd": "/Users/benfields/Documents/cs_playground/C++/leetCodeProblems/minStones",
+        "externalConsole":true,
+        "MIMode":"lldb"
+      }
+    }
+  }
+}
