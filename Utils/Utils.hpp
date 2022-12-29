@@ -6,7 +6,11 @@
 #include <vector>
 #include <fstream>
 
-using namespace std;
+
+typedef struct ListNode{
+    int val;
+    ListNode* next;
+} ListNode;
 
 #ifdef _WIN32
 #include <windows.h>
@@ -91,7 +95,14 @@ public:
 
 
 std::vector<int> parseIntVec();
-void log(Logger* log,string s);
+std::vector<std::string> parseStringVec();
+void log(Logger* log,std::string s);
+ListNode* newNode(int key, ListNode* next);
+ListNode* constructList(std::vector<int> const &keys);
+void printVecString(std::vector<std::string>& v);
+
+template<typename T>
+void printVecNum(std::vector<T>& vec);
 
 
 #endif // !UTILS_H

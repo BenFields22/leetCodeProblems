@@ -7,6 +7,8 @@
 #include "Utils.hpp"
 Logger* g_log = new Logger("MAIN",1,Color::RED);
 
+using namespace std;
+
 int minStoneSum(vector<int>& piles, int k) {
     priority_queue<int> heap(piles.begin(), piles.end());
     int totalSum = accumulate(piles.begin(), piles.end(), 0);
