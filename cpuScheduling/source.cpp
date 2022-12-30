@@ -87,6 +87,13 @@ int main(int argc, char** argv){
         log(g_log,"The index order is:");
         printVecNum(ans);
         log(g_log,expected+" was expected.");
+        std::vector<int> expVec = convertToIntVec(expected);
+        if(expVec==ans){
+            log(g_log,"PASSED");
+        }
+        else{
+            log(g_log,"FAILED");
+        }
     }
 	return 0;
 }
