@@ -95,12 +95,13 @@ public:
 
 
 std::vector<int> parseIntVec();
+std::vector<std::vector<int>> parse2DVecInt();
 std::vector<std::string> parseStringVec();
 void log(Logger* log,std::string s);
 ListNode* newNode(int key, ListNode* next);
 ListNode* constructList(std::vector<int> const &keys);
 void printVecString(std::vector<std::string>& v);
-
+std::vector<int> convertToIntVec(std::string s);
 template<typename T>
 void printVecNum(std::vector<T>& vec);
 

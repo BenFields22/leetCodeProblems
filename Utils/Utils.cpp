@@ -80,6 +80,96 @@ std::vector<int> parseIntVec(){
     return v;
 }
 
+std::vector<int> convertToIntVec(std::string input){
+    std::vector<int> v;
+    int start = 0;
+    std::string del = ",";
+    int end = input.find(del);
+    if(end==-1){
+        std::string ss = input.substr(1,input.length()-2);
+        std::vector<int> v;
+        v.push_back(int(stoi(ss)));
+        //printVecNum(v);
+        return v;
+    }
+    int first = 0;
+    while (end != -1) {
+        if (first==0) {
+            first=1;
+            std::string ss = input.substr(start, end - start);
+            int len = ss.length();
+            ss.erase(ss.begin() + 0, ss.end()-(len-1));
+            v.push_back(int(stoi(ss)));
+        }
+        else{
+            std::vector<std::string> vi;
+            std::string ss = input.substr(start, end - start);
+            v.push_back(int(stoi(ss)));
+        }
+        start = end + del.size();
+        end = input.find(del, start);
+    }
+    std::string ss2 = input.substr(start, end - start);
+    int len2 = ss2.length();
+    ss2.erase(ss2.begin() + len2-1, ss2.end());
+    v.push_back(int(stoi(ss2)));
+    //printVecNum(v);
+    return v;
+}
+
+std::vector<std::vector<int>> parse2DVecInt(){
+    std::vector<std::vector<int>> v;
+    std::string input;
+    std::cin>>input;
+    //log(u_log,input);
+    int start = 0;
+    std::string del = "],[";
+    int end = input.find(del);
+    int first = 0;
+    while (end != -1) {
+        if (first==0) {
+            first=1;
+            std::string ss = input.substr(start+1, end - start);
+            int len = ss.length();
+            ss.erase(ss.begin() + 0, ss.end()-(len-1)-1);
+            //log(u_log,ss);
+            v.push_back(convertToIntVec(ss));
+        }
+        else{
+            std::vector<std::string> vi;
+            std::string ss = input.substr(start-1, end - start+2);
+            //log(u_log,ss);
+            v.push_back(convertToIntVec(ss));
+        }
+        start = end + del.size();
+        end = input.find(del, start);
+    }
+    std::string ss2 ="[";
+    ss2 += input.substr(start, end - start);
+    int len2 = ss2.length();
+    ss2.erase(ss2.begin() + len2-1, ss2.end());
+    //log(u_log,ss2);
+    v.push_back(convertToIntVec(ss2));
+    std::string l="";
+    l+="[";
+    for (int i = 0; i < v.size(); ++i) {
+        if (i!=0) {
+            l+=",";
+        }
+        l+="[";
+       for(int k=0;k<v[i].size();k++){
+            if (k!=0) {
+                l+=",";
+            }
+            l+=std::to_string(v[i][k]);
+       } 
+        l+="]";
+    }
+    l+="]";
+    log(u_log,l);
+    return v;
+}
+
 std::vector<std::string> parseStringVec(){
     std::vector<std::string> v={};
     std::string input;
@@ -139,7 +229,7 @@ ListNode* constructList(std::vector<int> const &keys)
 }
 
 void printVecString(std::vector<std::string>& v){
-    std::string tmp="Parsed vector ";
+    std::string tmp="";
     tmp+="[";
     for (int i = 0; i < v.size(); ++i) {
         if (i!=0) {
@@ -152,7 +242,7 @@ void printVecString(std::vector<std::string>& v){
 }
 template<typename T>
 void printVecNum(std::vector<T>& v){
-    std::string tmp="Parsed vector ";
+    std::string tmp="";
     tmp+="[";
     for (int i = 0; i < v.size(); ++i) {
         if (i!=0) {
